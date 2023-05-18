@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Appy.Views.CameraViewPage"
+             xmlns:gv="clr-namespace:BarcodeScanner.Mobile;assembly=BarcodeScanner.Mobile.Maui"
+             xmlns:loc="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             xmlns:handler="clr-namespace:Appy.Handlers"
+             Title="Camera">
+    <Grid RowDefinitions="*,Auto">
+
+        <VerticalStackLayout VerticalOptions="CenterAndExpand">
+            <gv:CameraView x:Name="Camera"
+                       OnDetected="Camera_BarcodeDetected" VibrationOnDetected="True" 
+                       HorizontalOptions="FillAndExpand"  WidthRequest="300" HeightRequest="300"/>
+            <Switch VerticalOptions="StartAndExpand" HeightRequest="45"  x:Name="FlashlightSwitch" WidthRequest="300" Margin="0,20" Toggled="FlashlightSwitch_Toggled"
+                BackgroundColor="#77258b" ThumbColor="#fff"/>
+        </VerticalStackLayout>
+        <HorizontalStackLayout Grid.Row="1" HorizontalOptions="Center" Spacing="12">
+            <Button FontFamily="FASolid" 
+                    Text="{loc:Translate cancel}"
+                 HorizontalOptions="CenterAndExpand"
+                    
+                    CharacterSpacing="4" ToolTipProperties.Text="{loc:Translate cancel}"  Margin="20"
+                    CornerRadius="20"
+                            
+                 WidthRequest="200" HeightRequest="45" Clicked="btn_cancel_Clicked" x:Name="btn_cancle"/>
+
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>

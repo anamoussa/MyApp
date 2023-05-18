@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Appy.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Appy"
+    xmlns:views="clr-namespace:Appy.Views"
+    xmlns:dashboardPages="clr-namespace:Appy.Views.Dashboard"
+    xmlns:loc="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+    xmlns:icon="clr-namespace:Appy.Handlers"
+    xmlns:models="clr-namespace:Appy.Models"
+    Shell.TabBarIsVisible="False"
+    xmlns:startupPages="clr-namespace:Appy.Views.Startup">
+    <ShellContent FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled"
+        ContentTemplate="{DataTemplate startupPages:LoadingPage}" Route="LoadingPage" />
+
+    <ShellContent
+        Title="Login Page" FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled"
+        ContentTemplate="{DataTemplate startupPages:LoginPage}"
+        Route="LoginPage" />
+    <ShellContent FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled"
+        ContentTemplate="{DataTemplate views:WebViewPage}"
+        Route="WebViewPage" >
+        <Shell.TitleView>
+            <HorizontalStackLayout>
+                <Grid RowDefinitions="*" ColumnDefinitions="*,*">
+
+                <Label FontFamily="FASolid" Grid.Row="0" Grid.Column="0"  Text="{x:Static icon:FontAwesomeIcons.Globe}" FontSize="30" TextColor="#FFF"
+               HorizontalOptions="Start"
+               VerticalOptions="Center" />
+                <Label Text="Web View" Grid.Row="0" Grid.Column="1" TextColor="#fff" FontSize="18" FontAttributes="Bold"
+                       HorizontalOptions="Start" VerticalOptions="Center" HorizontalTextAlignment="Start" />
+                </Grid>
+            </HorizontalStackLayout>
+        </Shell.TitleView>
+    </ShellContent>
+    <ShellContent
+        Title="Camera" FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled"
+        ContentTemplate="{DataTemplate views:CameraViewPage}"
+        Route="CameraViewPage" />
+
+    <Shell.FlyoutFooter>
+        <StackLayout Padding="20">
+            <StackLayout Padding="20" HorizontalOptions="Center">
+                <Grid RowDefinitions="*" ColumnDefinitions="*,*">
+                    <Button Grid.Row="0" Grid.Column="0" ToolTipProperties.Text="English"
+                            Text="EN" Command="{Binding LocalizeToENCommand}" Margin="10,0" />
+                    <Button Grid.Row="0" Grid.Column="1" ToolTipProperties.Text="Italian"
+                            Text="IT" Command="{Binding LocalizeToITCommand}" Margin="10,0" />
+                </Grid>
+            </StackLayout>
+            <Button Text="{loc:Translate signout}" Command="{Binding SignOutCommand}" CharacterSpacing="3" />
+        </StackLayout>
+    </Shell.FlyoutFooter>
+</Shell>

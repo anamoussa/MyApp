@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Appy.Views.Dashboard.DashboardPage"
+             xmlns:loc="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             Title="Home">
+    
+
+    <Grid RowDefinitions="*,Auto">
+       <Image x:Name="imgQr" Aspect="AspectFit"  Source="qr_img.svg" />
+        <!--<ActivityIndicator IsVisible="{Binding IsLoading}" HorizontalOptions="Center" VerticalOptions="Center" IsRunning="{Binding IsLoading}" />-->
+        <HorizontalStackLayout Grid.Row="1" HorizontalOptions="Center" Spacing="12">
+            <Button Text="{loc:Translate scan}" Margin="10"
+                    FontSize="18"
+                ToolTipProperties.Text="{loc:Translate scan}"
+                Clicked="btn_scan_Clicked" 
+                CharacterSpacing="2"/>
+
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>
