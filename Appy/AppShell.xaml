@@ -40,16 +40,13 @@
         Route="CameraViewPage" />
 
     <Shell.FlyoutFooter>
-        <StackLayout Padding="20">
-            <StackLayout Padding="20" HorizontalOptions="Center">
-                <Grid RowDefinitions="*" ColumnDefinitions="*,*">
-                    <Button Grid.Row="0" Grid.Column="0" ToolTipProperties.Text="English"
-                            Text="EN" Command="{Binding LocalizeToENCommand}" Margin="10,0" />
-                    <Button Grid.Row="0" Grid.Column="1" ToolTipProperties.Text="Italian"
-                            Text="IT" Command="{Binding LocalizeToITCommand}" Margin="10,0" />
-                </Grid>
-            </StackLayout>
+        <VerticalStackLayout Padding="20">
+            <Button ToolTipProperties.Text="English"
+                            Text="English" Command="{Binding LocalizeToENCommand}" CharacterSpacing="2"/>
+                <Button ToolTipProperties.Text="Italian"
+                            Text="Italian" Command="{Binding LocalizeToITCommand}" CharacterSpacing="2" Margin="0,5,0,50"/>
+        
             <Button Text="{loc:Translate signout}" Command="{Binding SignOutCommand}" CharacterSpacing="3" />
-        </StackLayout>
+        </VerticalStackLayout>
     </Shell.FlyoutFooter>
 </Shell>

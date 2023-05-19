@@ -10,6 +10,7 @@ using Appy.Views;
 using Appy.ViewModels;
 using LocalizationResourceManager.Maui;
 using Appy.Resources.Strings;
+using Plugin.Maui.Audio;
 
 namespace Appy;
 
@@ -23,7 +24,8 @@ public static class MauiProgram
 
         builder
             .UseMauiApp<App>()
-              .ConfigureMauiHandlers(handlers =>
+
+            .ConfigureMauiHandlers(handlers =>
               {
                   // Add the handlers
                   handlers.AddBarcodeScannerHandler();
@@ -31,13 +33,13 @@ public static class MauiProgram
             .ConfigureLifecycleEvents(events =>
             {
 #if ANDROID
-                    events.AddAndroid(android => android
-                        .OnActivityResult((activity, requestCode, resultCode, data) => LogEvent(nameof(AndroidLifecycle.OnActivityResult), requestCode.ToString()))
-                        .OnStart((activity) => LogEvent(nameof(AndroidLifecycle.OnStart)))
-                        .OnCreate((activity, bundle) => LogEvent(nameof(AndroidLifecycle.OnCreate)))
-                        .OnBackPressed((activity) => LogEvent(nameof(AndroidLifecycle.OnBackPressed)) && false)
-                        .OnStop((activity) => LogEvent(nameof(AndroidLifecycle.OnStop))));
-                          static bool LogEvent(string eventName, string type = null)
+                events.AddAndroid(android => android
+                    .OnActivityResult((activity, requestCode, resultCode, data) => LogEvent(nameof(AndroidLifecycle.OnActivityResult), requestCode.ToString()))
+                    .OnStart((activity) => LogEvent(nameof(AndroidLifecycle.OnStart)))
+                    .OnCreate((activity, bundle) => LogEvent(nameof(AndroidLifecycle.OnCreate)))
+                    .OnBackPressed((activity) => LogEvent(nameof(AndroidLifecycle.OnBackPressed)) && false)
+                    .OnStop((activity) => LogEvent(nameof(AndroidLifecycle.OnStop))));
+                static bool LogEvent(string eventName, string type = null)
                 {
                     System.Diagnostics.Debug.WriteLine($"Lifecycle event: {eventName}{(type == null ? string.Empty : $" ({type})")}");
                     return true;
@@ -75,6 +77,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<WebViewViewModel>();
         builder.Services.AddTransient<AppShellViewModel>();
         builder.Services.AddTransient<BaseViewModel>();
+        builder.Services.AddSingleton(AudioManager.Current);
 #if DEBUG
         builder.Logging.AddDebug();
 #endif

@@ -1,6 +1,7 @@
 using Appy.Views.Dashboard;
 using BarcodeScanner.Mobile;
 using Microsoft.Maui.Controls.Internals;
+using Plugin.Maui.Audio;
 using System;
 using static Microsoft.Maui.ApplicationModel.Permissions;
 
@@ -25,6 +26,7 @@ public partial class CameraViewPage : ContentPage
         List<BarcodeResult> obj = args.BarcodeResults;
         if (obj.Count != 0)
             result = $"{obj[0].DisplayValue}{Environment.NewLine}";
+       
         //for (int i = 0; i < obj.Count; i++)
         //{
         //    result += $"{obj[i].DisplayValue}{Environment.NewLine}";
@@ -33,7 +35,11 @@ public partial class CameraViewPage : ContentPage
         string url = $"//{nameof(WebViewPage)}?source={result}";
         MainThread.BeginInvokeOnMainThread(async () =>
         {
+            var x = new AudioManager();
+            var player = x.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("tone.mp3"));
+            player.Play();
             await Shell.Current.GoToAsync(url);
+          //  player.Stop();
         });
         Camera.IsScanning = false;
 

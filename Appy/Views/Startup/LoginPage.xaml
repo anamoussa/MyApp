@@ -21,10 +21,10 @@
             Spacing="15" 
             Padding="35,0" 
             VerticalOptions="Start">
-        <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" Margin="0,10">
-            <Grid RowDefinitions="*" ColumnDefinitions="auto,auto,auto">
-                <Button Grid.Row="0" Grid.Column="0" ToolTipProperties.Text="English"
-                        Text="EN" Command="{Binding LocalizeToENCommand}" Margin="10,0">
+        <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" Margin="0,10,0,0">
+            <Grid RowDefinitions="*" ColumnDefinitions="auto,auto" ColumnSpacing="20">
+                <Button Grid.Row="0" Grid.Column="0" ToolTipProperties.Text="English" TextColor="#FFF"
+                        Text="EN" Command="{Binding LocalizeToENCommand}" >
                     <Button.Background>
                         <LinearGradientBrush>
                             <GradientStop Color="#eec0c2"
@@ -36,8 +36,8 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button Grid.Row="0" Grid.Column="2" ToolTipProperties.Text="Italian"
-                        Text="IT" Command="{Binding LocalizeToITCommand}" Margin="10,0">
+                <Button Grid.Row="0" Grid.Column="1" ToolTipProperties.Text="Italian" TextColor="#FFF"
+                        Text="IT" Command="{Binding LocalizeToITCommand}" WidthRequest="47">
                     <Button.Background>
                         <LinearGradientBrush>
                             <GradientStop Color="#eec0c2"
@@ -93,7 +93,7 @@
             </Frame>
         </VerticalStackLayout>
 
-        <Button WidthRequest="200" Text="{loc:Translate login}" x:Name="signin_btn" BackgroundColor="#77258b" Clicked="Button_Clicked"  CornerRadius="20" HorizontalOptions="FillAndExpand">
+        <Button WidthRequest="200" Text="{loc:Translate login}" TextColor="#fff" x:Name="signin_btn" BackgroundColor="#77258b" Clicked="Button_Clicked"  CornerRadius="20" HorizontalOptions="FillAndExpand">
             <Button.Shadow>
                 <Shadow Brush="#000"
                 Offset="10,10"

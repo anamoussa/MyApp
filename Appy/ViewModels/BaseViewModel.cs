@@ -17,6 +17,10 @@ public partial class BaseViewModel : ObservableObject
     public BaseViewModel(ILocalizationResourceManager localizationResourceManager)
     {
         this.localizationResourceManager = localizationResourceManager;
+        if (this.localizationResourceManager.DefaultCulture.TwoLetterISOLanguageName != "en" && this.localizationResourceManager.DefaultCulture.TwoLetterISOLanguageName != "it")
+        {
+            localizationResourceManager.CurrentCulture = new System.Globalization.CultureInfo("en");
+        }
     }
     [RelayCommand]
     public void LocalizeToEN()
